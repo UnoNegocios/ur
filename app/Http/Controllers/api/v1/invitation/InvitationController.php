@@ -95,7 +95,8 @@ class InvitationController extends Controller
      */
     public function destroy(Invitation $invitation)
     {
-        //
+        $invitation->delete();
+        return response(null, 204);
     }
 
     public function import(Request $request)
