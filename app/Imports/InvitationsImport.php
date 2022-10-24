@@ -27,9 +27,7 @@ class InvitationsImport implements ToCollection
         {
             Invitation::create([
             'receiver_name' => $row[0],
-            'reciever_phone' => $row[1],
-            'receiver_email' => $row[2],
-            'guests_number' => $row[3],
+            'guests_number' => $row[1],
             'event_id' => $this->event_id,
             ]);
         }

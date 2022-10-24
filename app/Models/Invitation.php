@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Event;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
 class Invitation extends Model
@@ -30,5 +31,10 @@ class Invitation extends Model
 
     public function event(){
         return $this->belongsTo(Event::class);
+    }
+
+    public function getQrImage(){
+       $qr = QrCode::generate('Make me into a QrCode!');
+        return $qr;
     }
 }

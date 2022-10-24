@@ -23,7 +23,7 @@ class InvitationResource extends JsonResource
             'qr_code_image' => $this->qr_code_image,
             'is_confirmed' => $this->is_confirmed,
             'guest_additional_message' => $this->guest_additional_message,
-            'qr_code_path' => $this->qr_code_path,
+            //'qr_code_path' => $this->getQrImage(),
         ];
     }
 }
