@@ -8,6 +8,7 @@ use App\Http\Resources\invitation\InvitationResource;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\AllowedSort;
 use Spatie\QueryBuilder\Filters\Filter;
+use App\Http\Resources\invitation\InvitationCollection;
 
 class InvitationFilter
 {
@@ -34,6 +35,10 @@ class InvitationFilter
         ->paginate($request->itemsPerPage)
         ->appends(request()->query());
 
-        return InvitationResource::collection($invitation);
+        return InvitationResource::collection($invitation)
+                ->additional([
+                    'total_accepted_invitations' => $invitation->where('is_confirmed', 1)->count(),
+                    'total_rejected_invitations' => $invitation->where('is_confirmed', 0)->count(),
+                ]);
     }
 }

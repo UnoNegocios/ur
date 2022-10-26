@@ -2,16 +2,11 @@
 
 namespace App\Http\Resources\invitation;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class InvitationResource extends JsonResource
+class InvitationCollection extends ResourceCollection
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
+
     public function toArray($request)
     {
         return [
@@ -27,5 +22,14 @@ class InvitationResource extends JsonResource
         ];
     }
 
-}
+    public function with($request)
+    {
+        return [
+            'meta' => [
+                'perro' => 1,
+            ],
+        ];
+    }
 
+
+}
