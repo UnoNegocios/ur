@@ -36,9 +36,10 @@ class InvitationFilter
         ->appends(request()->query());
 
         return InvitationResource::collection($invitation)
-                ->additional([
+                ->additional([ 'meta' => [
                     'total_accepted_invitations' => $invitation->where('is_confirmed', 1)->count(),
                     'total_rejected_invitations' => $invitation->where('is_confirmed', 0)->count(),
+                ]
                 ]);
     }
 }
