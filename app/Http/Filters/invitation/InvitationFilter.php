@@ -37,8 +37,9 @@ class InvitationFilter
 
         return InvitationResource::collection($invitation)
                 ->additional([ 'meta' => [
-                    'total_accepted_invitations' => $invitation->where('is_confirmed', 1)->count(),
-                    'total_rejected_invitations' => $invitation->where('is_confirmed', 0)->count(),
+                    'total_accepted_invitations' => Invitation::where('is_confirmed', '=', 1)->count(),
+                    'total_rejected_invitations' => Invitation::where('is_confirmed', '=', 0)->count(),
+                    'total_pending_invitations' => Invitation::whereNull('is_confirmed')->count(),
                 ]
                 ]);
     }
